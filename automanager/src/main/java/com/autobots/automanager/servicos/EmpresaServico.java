@@ -6,6 +6,7 @@ import com.autobots.automanager.enumeracoes.Perfil;
 import com.autobots.automanager.modelos.adicionador.AdicionadorLinkEmpresa;
 import com.autobots.automanager.modelos.cadastro.CadastradorEmpresa;
 import com.autobots.automanager.repositorios.RepositorioEmpresa;
+import com.autobots.automanager.repositorios.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class EmpresaServico {
 
     @Autowired
     private AdicionadorLinkEmpresa adicionadorLinkEmpresa;
+
+    @Autowired
+    private RepositorioUsuario repositorioUsuario;
 
     public void cadastrarEmpresa(Empresa empresa, Usuario usuarioLogado) {
         if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
@@ -105,7 +109,7 @@ public class EmpresaServico {
     }
 
     public Usuario buscarUsuarioPorId(Long usuarioId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarUsuarioPorId'");
+        return repositorioUsuario.findById(usuarioId)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + usuarioId));
     }
 }

@@ -23,7 +23,6 @@ public class EmpresaControle {
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarEmpresa(@RequestBody Empresa empresa, @RequestParam("usuarioId") Long usuarioId) {
         try {
-            // Supondo que você tenha um método para buscar o usuário pelo ID
             Usuario usuario = empresaServico.buscarUsuarioPorId(usuarioId);
             empresaServico.cadastrarEmpresa(empresa, usuario);
             return ResponseEntity.created(null).build();

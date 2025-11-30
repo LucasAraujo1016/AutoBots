@@ -10,18 +10,18 @@ import java.util.Date;
 @Component
 public class CadastradorMercadoria {
     public Mercadoria cadastrarMercadoria(Mercadoria mercadoria){
-        Mercadoria setMercadoria = new Mercadoria();
-        setMercadoria.setNome(mercadoria.getNome());
-        setMercadoria.setValor(mercadoria.getValor());
-        setMercadoria.setQuantidade(mercadoria.getQuantidade());
-        setMercadoria.setCadastro(new Date());
-        setMercadoria.setFabricao(new Date());
-        setMercadoria.setValidade(new Date());
+        Mercadoria mercadoriaNova = new Mercadoria();
+        mercadoriaNova.setNome(mercadoria.getNome());
+        mercadoriaNova.setValor(mercadoria.getValor());
+        mercadoriaNova.setQuantidade(mercadoria.getQuantidade());
+        mercadoriaNova.setCadastro(new Date());
+        mercadoriaNova.setFabricao(new Date());
+        mercadoriaNova.setValidade(new Date());
         if (mercadoria.getDescricao() != null) {
-            setMercadoria.setDescricao(mercadoria.getDescricao());
+            mercadoriaNova.setDescricao(mercadoria.getDescricao());
         }
 
-        return setMercadoria;
+        return mercadoriaNova;
     }
 
     public Mercadoria cadastrarMercadoria (MercadoriaDTO mercadoria) {

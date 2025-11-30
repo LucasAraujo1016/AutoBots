@@ -138,7 +138,6 @@ public class MercadoriaServico {
     }
 
     public List<Mercadoria> listarMercadorias(Usuario usuarioLogado) {
-        // ADMIN, GERENTE e VENDEDOR podem listar
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -152,7 +151,6 @@ public class MercadoriaServico {
     public Mercadoria visualizarMercadoria(Long id, Usuario usuarioLogado) {
         Mercadoria mercadoria = repositorioMercadoria.findById(id).orElse(null);
         if (mercadoria != null) {
-            // ADMIN, GERENTE e VENDEDOR podem visualizar
             if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -165,7 +163,6 @@ public class MercadoriaServico {
     }
 
     public List<Mercadoria> visualizarMercadoriaEmpresa(Long idEmpresa, Usuario usuarioLogado) {
-        // ADMIN, GERENTE e VENDEDOR podem visualizar
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -182,7 +179,6 @@ public class MercadoriaServico {
     }
 
     public List<Mercadoria> visualizarMercadoriaUsuario(Long idUsuario, Usuario usuarioLogado) {
-        // ADMIN, GERENTE e VENDEDOR podem visualizar mercadorias de qualquer usuário
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {

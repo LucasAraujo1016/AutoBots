@@ -87,20 +87,16 @@ public class UsuarioService {
 
         List<Usuario> usuarios = repositorioUsuario.findAll();
         Usuario usuarioLogado = selecionadorUsuario.selecionarUsername(usuarios, username);
-
-        // ADMIN e GERENTE podem visualizar qualquer usuário
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE)) {
             adicionadorLinkUsuario.adicionarLink(usuarioAlvo);
             return usuarioAlvo;
         }
-        // VENDEDOR pode visualizar clientes
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR) &&
             usuarioAlvo.getPerfis().contains(Perfil.ROLE_CLIENTE)) {
             adicionadorLinkUsuario.adicionarLink(usuarioAlvo);
             return usuarioAlvo;
         }
-        // CLIENTE pode visualizar apenas a si mesmo
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_CLIENTE) &&
             usuarioLogado.getId().equals(usuarioAlvo.getId())) {
             adicionadorLinkUsuario.adicionarLink(usuarioAlvo);

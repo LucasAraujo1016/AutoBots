@@ -23,35 +23,35 @@ public class CadastradorUsuario {
         usuarioNovo.setPerfis(usuario.perfis());
 
         for (Telefone telefone : usuario.telefones()){
-            Telefone setTelefone = new Telefone();
-            setTelefone.setDdd(telefone.getDdd());
-            setTelefone.setNumero(telefone.getNumero());
-            usuarioNovo.getTelefones().add(setTelefone);
+            Telefone telefoneNovo = new Telefone();
+            telefoneNovo.setDdd(telefone.getDdd());
+            telefoneNovo.setNumero(telefone.getNumero());
+            usuarioNovo.getTelefones().add(telefoneNovo);
         }
 
-        Endereco setEndereco = new Endereco();
-        setEndereco.setEstado(usuario.endereco().getEstado());
-        setEndereco.setCidade(usuario.endereco().getCidade());
-        setEndereco.setBairro(usuario.endereco().getBairro());
-        setEndereco.setRua(usuario.endereco().getRua());
-        setEndereco.setNumero(usuario.endereco().getNumero());
-        setEndereco.setCodigoPostal(usuario.endereco().getCodigoPostal());
+        Endereco enderecoNovo = new Endereco();
+        enderecoNovo.setEstado(usuario.endereco().getEstado());
+        enderecoNovo.setCidade(usuario.endereco().getCidade());
+        enderecoNovo.setBairro(usuario.endereco().getBairro());
+        enderecoNovo.setRua(usuario.endereco().getRua());
+        enderecoNovo.setNumero(usuario.endereco().getNumero());
+        enderecoNovo.setCodigoPostal(usuario.endereco().getCodigoPostal());
         if (usuario.endereco().getInformacoesAdicionais() !=null){
-            setEndereco.setInformacoesAdicionais(usuario.endereco().getInformacoesAdicionais());
+            enderecoNovo.setInformacoesAdicionais(usuario.endereco().getInformacoesAdicionais());
         }
-        usuarioNovo.setEndereco(setEndereco); // setEndereco de dentro do parenteses é o objeto criado acima, ficou confuso eu sei :(
+        usuarioNovo.setEndereco(enderecoNovo);
 
         for (Documento documento : usuario.documentos()){
-            Documento setDocumento = new Documento();
-            setDocumento.setTipo(documento.getTipo());
-            setDocumento.setNumero(documento.getNumero());
-            usuarioNovo.getDocumentos().add(setDocumento);
+            Documento documentoNovo = new Documento();
+            documentoNovo.setTipo(documento.getTipo());
+            documentoNovo.setNumero(documento.getNumero());
+            usuarioNovo.getDocumentos().add(documentoNovo);
         }
 
         for (Email email : usuario.emails()){
-            Email setEmail = new Email();
-            setEmail.setEndereco(email.getEndereco());
-            usuarioNovo.getEmails().add(setEmail);
+            Email emailNovo = new Email();
+            emailNovo.setEndereco(email.getEndereco());
+            usuarioNovo.getEmails().add(emailNovo);
         }
 
         if (usuario.credencial() != null){
@@ -64,15 +64,15 @@ public class CadastradorUsuario {
 
         if (usuario.mercadorias() != null) {
             for (MercadoriaDTO mercadoria : usuario.mercadorias()){
-                Mercadoria setMercadoria = new Mercadoria();
-                setMercadoria.setNome(mercadoria.nome());
-                setMercadoria.setValor(mercadoria.valor());
-                setMercadoria.setQuantidade(mercadoria.quantidade());
-                setMercadoria.setCadastro(new Date());
-                setMercadoria.setFabricao(new Date());
-                setMercadoria.setValidade(new Date());
-                setMercadoria.setDescricao(mercadoria.descricao().orElse(null));
-                usuarioNovo.getMercadorias().add(setMercadoria);
+                Mercadoria mercadoriaNova = new Mercadoria();
+                mercadoriaNova.setNome(mercadoria.nome());
+                mercadoriaNova.setValor(mercadoria.valor());
+                mercadoriaNova.setQuantidade(mercadoria.quantidade());
+                mercadoriaNova.setCadastro(new Date());
+                mercadoriaNova.setFabricao(new Date());
+                mercadoriaNova.setValidade(new Date());
+                mercadoriaNova.setDescricao(mercadoria.descricao().orElse(null));
+                usuarioNovo.getMercadorias().add(mercadoriaNova);
             }
         }
 
@@ -87,66 +87,66 @@ public class CadastradorUsuario {
     }
 
     public Usuario cadastrarUsuario(Usuario usuario){
-        Usuario setUsario = new Usuario();
-        setUsario.setNome(usuario.getNome());
-        setUsario.setNomeSocial(usuario.getNomeSocial());
-        setUsario.setPerfis(usuario.getPerfis());
+        Usuario usuarioNovo = new Usuario();
+        usuarioNovo.setNome(usuario.getNome());
+        usuarioNovo.setNomeSocial(usuario.getNomeSocial());
+        usuarioNovo.setPerfis(usuario.getPerfis());
 
         for (Telefone telefone : usuario.getTelefones()){
-            Telefone setTelefone = new Telefone();
-            setTelefone.setDdd(telefone.getDdd());
-            setTelefone.setNumero(telefone.getNumero());
-            setUsario.getTelefones().add(setTelefone);
+            Telefone telefoneNovo = new Telefone();
+            telefoneNovo.setDdd(telefone.getDdd());
+            telefoneNovo.setNumero(telefone.getNumero());
+            usuarioNovo.getTelefones().add(telefoneNovo);
         }
 
-        Endereco setEndereco = new Endereco();
-        setEndereco.setEstado(usuario.getEndereco().getEstado());
-        setEndereco.setCidade(usuario.getEndereco().getCidade());
-        setEndereco.setBairro(usuario.getEndereco().getBairro());
-        setEndereco.setRua(usuario.getEndereco().getRua());
-        setEndereco.setNumero(usuario.getEndereco().getNumero());
-        setEndereco.setCodigoPostal(usuario.getEndereco().getCodigoPostal());
+        Endereco enderecoNovo = new Endereco();
+        enderecoNovo.setEstado(usuario.getEndereco().getEstado());
+        enderecoNovo.setCidade(usuario.getEndereco().getCidade());
+        enderecoNovo.setBairro(usuario.getEndereco().getBairro());
+        enderecoNovo.setRua(usuario.getEndereco().getRua());
+        enderecoNovo.setNumero(usuario.getEndereco().getNumero());
+        enderecoNovo.setCodigoPostal(usuario.getEndereco().getCodigoPostal());
         if (usuario.getEndereco().getInformacoesAdicionais() != null){
-            setEndereco.setInformacoesAdicionais(usuario.getEndereco().getInformacoesAdicionais());
+            enderecoNovo.setInformacoesAdicionais(usuario.getEndereco().getInformacoesAdicionais());
         }
-        setUsario.setEndereco(setEndereco);
+        usuarioNovo.setEndereco(enderecoNovo);
 
         for (Documento documento : usuario.getDocumentos()){
-            Documento setDocumento = new Documento();
-            setDocumento.setTipo(documento.getTipo());
-            setDocumento.setNumero(documento.getNumero());
-            setDocumento.setDataEmissao(new Date());
-            setUsario.getDocumentos().add(setDocumento);
+            Documento documentoNovo = new Documento();
+            documentoNovo.setTipo(documento.getTipo());
+            documentoNovo.setNumero(documento.getNumero());
+            documentoNovo.setDataEmissao(new Date());
+            usuarioNovo.getDocumentos().add(documentoNovo);
         }
 
         for (Email email : usuario.getEmails()){
-            Email setEmail = new Email();
-            setEmail.setEndereco(email.getEndereco());
-            setUsario.getEmails().add(setEmail);
+            Email emailNovo = new Email();
+            emailNovo.setEndereco(email.getEndereco());
+            usuarioNovo.getEmails().add(emailNovo);
         }
 
         if (usuario.getMercadorias() != null){
             for (Mercadoria mercadoria : usuario.getMercadorias()){
-                Mercadoria setMercadoria = new Mercadoria();
-                setMercadoria.setNome(mercadoria.getNome());
-                setMercadoria.setValor(mercadoria.getValor());
-                setMercadoria.setQuantidade(mercadoria.getQuantidade());
-                setMercadoria.setCadastro(new Date());
-                setMercadoria.setFabricao(new Date());
-                setMercadoria.setValidade(new Date());
-                setMercadoria.setDescricao(mercadoria.getDescricao());
-                setUsario.getMercadorias().add(setMercadoria);
+                Mercadoria mercadoriaNova = new Mercadoria();
+                mercadoriaNova.setNome(mercadoria.getNome());
+                mercadoriaNova.setValor(mercadoria.getValor());
+                mercadoriaNova.setQuantidade(mercadoria.getQuantidade());
+                mercadoriaNova.setCadastro(new Date());
+                mercadoriaNova.setFabricao(new Date());
+                mercadoriaNova.setValidade(new Date());
+                mercadoriaNova.setDescricao(mercadoria.getDescricao());
+                usuarioNovo.getMercadorias().add(mercadoriaNova);
             }
         }
 
         if (usuario.getVendas() != null){
-            setUsario.setVendas(usuario.getVendas());
+            usuarioNovo.setVendas(usuario.getVendas());
         }
 
         if (usuario.getVeiculos() != null){
-            setUsario.setVeiculos(usuario.getVeiculos());
+            usuarioNovo.setVeiculos(usuario.getVeiculos());
         }
 
-        return setUsario;
+        return usuarioNovo;
     }
 }

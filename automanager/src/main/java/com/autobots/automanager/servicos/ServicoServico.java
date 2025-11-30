@@ -111,7 +111,6 @@ public class ServicoServico {
     }
 
     public List<Servico> listarServicos(Usuario usuarioLogado) {
-        // ADMIN, GERENTE e VENDEDOR podem listar
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -125,7 +124,6 @@ public class ServicoServico {
     public Servico visualizarServico(Long id, Usuario usuarioLogado) {
         Servico servico = repositorioServico.findById(id).orElse(null);
         if (servico != null) {
-            // ADMIN, GERENTE e VENDEDOR podem visualizar
             if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {

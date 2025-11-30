@@ -30,25 +30,25 @@ public class CadastradorEmpresa {
         empresaNova.setRazaoSocial(empresa.getRazaoSocial());
         if (empresa.getTelefones() != null){
             for (Telefone telefone : empresa.getTelefones()){
-                Telefone setTelefone = new Telefone();
-                setTelefone.setDdd(telefone.getDdd());
-                setTelefone.setNumero(telefone.getNumero());
-                empresaNova.getTelefones().add(setTelefone);
+                Telefone telefoneNovo = new Telefone();
+                telefoneNovo.setDdd(telefone.getDdd());
+                telefoneNovo.setNumero(telefone.getNumero());
+                empresaNova.getTelefones().add(telefoneNovo);
             }
         }
 
         if (empresa.getEndereco() != null) {
-            Endereco setEndereco = new Endereco();
-            setEndereco.setEstado(empresa.getEndereco().getEstado());
-            setEndereco.setCidade(empresa.getEndereco().getCidade());
-            setEndereco.setBairro(empresa.getEndereco().getBairro());
-            setEndereco.setRua(empresa.getEndereco().getRua());
-            setEndereco.setNumero(empresa.getEndereco().getNumero());
-            setEndereco.setCodigoPostal(empresa.getEndereco().getCodigoPostal());
+            Endereco enderecoNovo = new Endereco();
+            enderecoNovo.setEstado(empresa.getEndereco().getEstado());
+            enderecoNovo.setCidade(empresa.getEndereco().getCidade());
+            enderecoNovo.setBairro(empresa.getEndereco().getBairro());
+            enderecoNovo.setRua(empresa.getEndereco().getRua());
+            enderecoNovo.setNumero(empresa.getEndereco().getNumero());
+            enderecoNovo.setCodigoPostal(empresa.getEndereco().getCodigoPostal());
             if (empresa.getEndereco().getInformacoesAdicionais() != null) {
-                setEndereco.setInformacoesAdicionais(empresa.getEndereco().getInformacoesAdicionais());
+                enderecoNovo.setInformacoesAdicionais(empresa.getEndereco().getInformacoesAdicionais());
             }
-            empresaNova.setEndereco(setEndereco);
+            empresaNova.setEndereco(enderecoNovo);
         }
 
         empresaNova.setCadastro(new Date());
@@ -61,22 +61,22 @@ public class CadastradorEmpresa {
 
         if (empresa.getUsuarios() != null){
             for (Usuario usuario : empresa.getUsuarios()){
-                Usuario setUsuario = cadastradorUsuario.cadastrarUsuario(usuario);
-                empresaNova.getUsuarios().add(setUsuario);
+                Usuario usuarioNovo = cadastradorUsuario.cadastrarUsuario(usuario);
+                empresaNova.getUsuarios().add(usuarioNovo);
             }
         }
 
         if (empresa.getVendas() != null){
             for (Venda venda : empresa.getVendas()){
-                Venda setVenda = cadastradorVenda.cadastrarVenda(venda);
-                empresaNova.getVendas().add(setVenda);
+                Venda vendaNova = cadastradorVenda.cadastrarVenda(venda);
+                empresaNova.getVendas().add(vendaNova);
             }
         }
 
         if (empresa.getMercadorias() != null){
             for (Mercadoria mercadoria : empresa.getMercadorias()){
-                Mercadoria setMercadoria = cadastradorMercadoria.cadastrarMercadoria(mercadoria);
-                empresaNova.getMercadorias().add(setMercadoria);
+                Mercadoria mercadoriaNova = cadastradorMercadoria.cadastrarMercadoria(mercadoria);
+                empresaNova.getMercadorias().add(mercadoriaNova);
             }
         }
 

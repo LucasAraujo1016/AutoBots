@@ -36,7 +36,6 @@ public class VeiculoServico {
     private AdicionadorLinkVeiculo adicionadorLinkVeiculo;
 
     public ResponseEntity<?> cadastrarVeiculo(Veiculo veiculo, Usuario usuarioLogado) {
-        // Apenas ADMIN e GERENTE podem cadastrar veículos
         if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
             return ResponseEntity.status(403).body("Usuário sem permissão para cadastrar veículo.");
         }
@@ -48,7 +47,6 @@ public class VeiculoServico {
     public ResponseEntity<?> excluirVeiculo(Long id, Usuario usuarioLogado) {
         Veiculo veiculo = repositorioVeiculo.findById(id).orElse(null);
         if (veiculo != null) {
-            // Apenas ADMIN e GERENTE podem excluir veículos
             if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
                 return ResponseEntity.status(403).body("Usuário sem permissão para excluir veículo.");
             }
@@ -70,7 +68,6 @@ public class VeiculoServico {
     public ResponseEntity<?> atualizarVeiculo(Long veiculoId, Veiculo veiculo, Usuario usuarioLogado) {
         Veiculo veiculoAtualizado = repositorioVeiculo.findById(veiculoId).orElse(null);
         if (veiculoAtualizado != null) {
-            // Apenas ADMIN e GERENTE podem atualizar veículos
             if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
                 return ResponseEntity.status(403).body("Usuário sem permissão para atualizar veículo.");
             }
@@ -97,7 +94,6 @@ public class VeiculoServico {
     }
 
     public List<Veiculo> listarVeiculos(Usuario usuarioLogado) {
-        // ADMIN, GERENTE e VENDEDOR podem listar todos
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -105,21 +101,18 @@ public class VeiculoServico {
             adicionadorLinkVeiculo.adicionarLink(veiculos);
             return veiculos;
         }
-        // CLIENTE não pode listar todos os veículos
         throw new SecurityException("Usuário sem permissão para listar veículos.");
     }
 
     public Veiculo visualizarVeiculo(Long id, Usuario usuarioLogado) {
         Veiculo veiculo = repositorioVeiculo.findById(id).orElse(null);
         if (veiculo != null) {
-            // ADMIN, GERENTE e VENDEDOR podem visualizar qualquer veículo
             if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
                 usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
                 adicionadorLinkVeiculo.adicionarLink(veiculo);
                 return veiculo;
             }
-            // CLIENTE pode visualizar apenas seus próprios veículos
             if (usuarioLogado.getPerfis().contains(Perfil.ROLE_CLIENTE) &&
                 veiculo.getProprietario() != null &&
                 veiculo.getProprietario().getId().equals(usuarioLogado.getId())) {
@@ -136,7 +129,6 @@ public class VeiculoServico {
         if (usuario == null) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
-        // ADMIN, GERENTE e VENDEDOR podem listar veículos de qualquer usuário
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_VENDEDOR)) {
@@ -145,7 +137,6 @@ public class VeiculoServico {
             adicionadorLinkVeiculo.adicionarLink(veiculosLista);
             return veiculosLista;
         }
-        // CLIENTE só pode listar seus próprios veículos
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_CLIENTE) &&
             usuarioLogado.getId().equals(idUsuario)) {
             Set<Veiculo> veiculos = usuario.getVeiculos();
@@ -157,7 +148,6 @@ public class VeiculoServico {
     }
 
     public ResponseEntity<?> vincularVeiculoUsuario(Long veiculoId, Long usuarioId, Usuario usuarioLogado) {
-        // Apenas ADMIN e GERENTE podem vincular veículos
         if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
             return ResponseEntity.status(403).body("Usuário sem permissão para vincular veículo.");
         }
@@ -178,7 +168,6 @@ public class VeiculoServico {
     }
 
     public ResponseEntity<?> desvincularVeiculoUsuario(Long veiculoId, Long usuarioId, Usuario usuarioLogado) {
-        // Apenas ADMIN e GERENTE podem desvincular veículos
         if (!(usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) || usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE))) {
             return ResponseEntity.status(403).body("Usuário sem permissão para desvincular veículo.");
         }

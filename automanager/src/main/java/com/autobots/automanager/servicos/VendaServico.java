@@ -150,7 +150,6 @@ public class VendaServico {
         Venda venda = repositorioVenda.findById(id).orElse(null);
         if (venda == null) return null;
 
-        // Permissão: ADMIN/GERENTE podem tudo, VENDEDOR só suas vendas, CLIENTE só suas compras
         if (usuarioLogado.getPerfis().contains(Perfil.ROLE_ADMIN) ||
             usuarioLogado.getPerfis().contains(Perfil.ROLE_GERENTE)) {
             adicionadorLinkVenda.adicionarLink(venda);

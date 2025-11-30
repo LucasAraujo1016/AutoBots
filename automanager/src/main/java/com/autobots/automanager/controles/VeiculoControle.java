@@ -33,12 +33,7 @@ public class VeiculoControle {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> excluirVeiculo(@PathVariable Long id, @RequestParam(required = false) Long idUsuario) {
         try {
-            // Supondo que você tenha um método para buscar o usuário pelo idUsuario, ou passe null se não for necessário
             com.autobots.automanager.entidades.Usuario usuario = null;
-            if (idUsuario != null) {
-                // Substitua pelo serviço correto para buscar o usuário
-                // usuario = usuarioServico.buscarUsuarioPorId(idUsuario);
-            }
             ResponseEntity<?> resposta = veiculoServico.excluirVeiculo(id, usuario);
             return resposta;
         } catch (IllegalArgumentException e) {
@@ -61,7 +56,6 @@ public class VeiculoControle {
     @PreAuthorize("hasAnyRole('ADMIN','GERENTE','VENDEDOR')")
     @GetMapping("/listar")
     public ResponseEntity<List<Veiculo>> listarVeiculos() {
-        // Passe null ou obtenha o usuário conforme sua lógica de negócio
         List<Veiculo> veiculos =  veiculoServico.listarVeiculos(null);
         if (veiculos.isEmpty()) {
             return ResponseEntity.noContent().build();
