@@ -4,6 +4,10 @@
 
 AutoBots é um sistema desenvolvido em Java utilizando o framework Spring Boot para gerenciamento de clientes, documentos, endereços e telefones.
 
+## O que foi feito nesta atividade
+
+Nesta atividade, foram implementados todos os CRUDs faltantes do sistema e iniciada a aplicação dos níveis de maturidade REST, utilizando os recursos disponíveis nos frameworks e tecnologias do projeto. O sistema foi aprimorado para seguir melhores práticas de arquitetura e integração, tornando-se mais flexível, padronizado e preparado para evoluções futuras.
+
 ## Requisitos
 
 - **Java:** 17+
